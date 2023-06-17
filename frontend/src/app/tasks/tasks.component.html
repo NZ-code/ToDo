@@ -1,0 +1,7 @@
+<app-task-form (messageSent)="newTask()"></app-task-form>
+<div routerLink="{{task.id}}/details" *ngFor="let task of tasks" class="task">
+    <span>{{task.id}}</span>
+    <h2><span>{{task.header}}</span></h2>
+    <p>{{task.text}}</p>
+    
+</div>

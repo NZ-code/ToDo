@@ -36,9 +36,11 @@ public class TaskService {
         taskRepository.delete(task);
     }
     public void updateTask(Task updatedTask, String id){
+        
         Task oldTask = getTask(id);
         oldTask.setHeader(updatedTask.getHeader());
         oldTask.setText(updatedTask.getText());
+        oldTask.setIsDone(updatedTask.getIsDone());
         taskRepository.save(oldTask);
     }
 }
