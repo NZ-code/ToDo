@@ -4,11 +4,9 @@ package com.mz.todo.controllers;
 import com.mz.todo.entities.Task;
 import com.mz.todo.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins ="http://localhost:4200")
@@ -20,9 +18,13 @@ public class TaskController {
     public Task getTask(@PathVariable("id") String id){
         return taskService.getTask(id);
     }
+    @GetMapping("/api/tasks/search")
+    public List<Task> searchTasksByHeaderPrefix(@RequestParam String headerPrefix, @RequestParam(required = false) String sorting){
+        return taskService.searchTasksByHeaderPrefix(headerPrefix, sorting);
+    }
     @GetMapping("/api/tasks")
-    public List<Task> getTasks(){
-        return taskService.getTasks();
+    public List<Task> getTasks(@RequestParam(required = false) String sorting){
+        return taskService.getTasks(sorting);
     }
     @PostMapping("/api/tasks")
     public void postTask(@RequestBody Task task){

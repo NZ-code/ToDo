@@ -3,8 +3,8 @@ package com.mz.todo.services;
 import com.mz.todo.entities.Task;
 import com.mz.todo.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -15,12 +15,23 @@ import java.util.Optional;
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
+    @Autowired
+    private CounterService counterService;
 
     public void createTask(Task task){
         taskRepository.save(task);
     }
-    public List<Task> getTasks(){
-        return (List<Task>) taskRepository.findAll();
+    public List<Task> getTasks(String sortingParam){
+        return (List<Task>) taskRepository.findAll(getSortingByParam(sortingParam));
+    }
+    Sort getSortingByParam(String sortingParam){
+        Sort sort;
+        if ("dueDate".equals(sortingParam)) {
+            sort = Sort.by("dueDate").ascending();
+        } else {
+            sort = Sort.by("header").ascending();
+        }
+        return sort;
     }
     public Task getTask(String taskId){
         Long id =  Long.valueOf(taskId);
@@ -36,11 +47,18 @@ public class TaskService {
         taskRepository.delete(task);
     }
     public void updateTask(Task updatedTask, String id){
-        
+
         Task oldTask = getTask(id);
         oldTask.setHeader(updatedTask.getHeader());
         oldTask.setText(updatedTask.getText());
         oldTask.setIsDone(updatedTask.getIsDone());
+        oldTask.setDueDate(updatedTask.getDueDate());
         taskRepository.save(oldTask);
     }
+
+    public List<Task> searchTasksByHeaderPrefix(String headerPrefix, String sorting) {
+        //todo not working
+        return taskRepository.findByHeaderStartingWithIgnoreCaseOrderByHeaderAsc(headerPrefix, getSortingByParam(sorting));
+    }
+
 }

@@ -10,6 +10,8 @@ import { Task } from '../task';
 })
 export class TasksComponent {
   tasks: Task[] | undefined;
+  sortingOptions = ['header', 'dueDate'];
+  selectedSorting : string = this.sortingOptions[0];
   headerPrefix: string = "";
   constructor(private taskService: TaskService){
     
@@ -17,20 +19,30 @@ export class TasksComponent {
   ngOnInit():void{
     this.attachAllTasks();
   }
-  attachAllTasks(){
-    this.taskService.findAll().subscribe(
+  attachAllTasks(sorting:string=this.selectedSorting){
+    this.taskService.findAll(sorting).subscribe(
       tasks => {this.tasks = tasks;}
     )
   }
   newTask(){
-    this.attachAllTasks();
+    this.attachAllTasks(this.selectedSorting);
     
   }
   onInputChange(){
-    this.attachAllTasksByHeaderPrefix(this.headerPrefix);
+    this.attachAllTasksByHeaderPrefix(this.headerPrefix, this.selectedSorting);
   }
-  attachAllTasksByHeaderPrefix(headerPrefix:string){
-    this.taskService.attachAllTasksByHeaderPrefix(headerPrefix).subscribe(
+  onSelectionChange(){
+    if (this.headerPrefix.length === 0){
+     
+      this.attachAllTasks(this.selectedSorting);
+    }
+    else{
+      
+      this.attachAllTasksByHeaderPrefix(this.headerPrefix, this.selectedSorting);
+    }
+  }
+  attachAllTasksByHeaderPrefix(headerPrefix:string, sorting:string){
+    this.taskService.attachAllTasksByHeaderPrefix(headerPrefix,sorting).subscribe(
       tasks => {this.tasks = tasks;}
     );
   }

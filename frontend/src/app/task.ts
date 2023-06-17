@@ -3,4 +3,5 @@ export class Task {
     header: string="";
     text: string=""
     isDone: boolean=false
+    dueDate: Date = new Date();
 }

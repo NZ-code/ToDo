@@ -45,5 +45,8 @@ export class TaskDetailComponent {
     //console.log(this.task!.isDone);
     
   }
+  getFormatedDate(date:Date){
+    return date.toISOString().substring(0,10);
+  }
 }
 

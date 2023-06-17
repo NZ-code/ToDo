@@ -11,8 +11,10 @@ export class TaskService {
 
   constructor(private http:HttpClient) { }
 
-  public findAll():Observable<Task[]>{
-    return this.http.get<Task[]>(Utils.base_url)
+  public findAll(sorting:string):Observable<Task[]>{
+    let params = new HttpParams().set('sorting',sorting);
+    console.log("Service: No prefix:" );
+    return this.http.get<Task[]>(Utils.base_url,{params:params})
   }
   public findById(id:string):Observable<Task>{
     return this.http.get<Task>(Utils.getUrlWithTaskId(id));
@@ -26,8 +28,9 @@ export class TaskService {
   public delete(id:string){
     return this.http.delete<Task>(Utils.getUrlWithTaskId(id));
   }
-  public attachAllTasksByHeaderPrefix(headerPrefix:string){
+  public attachAllTasksByHeaderPrefix(headerPrefix:string, sorting:string){
     let params = new HttpParams().set('headerPrefix',headerPrefix);
+    params.append('sorting',sorting)
     console.log("Service: Header prefix:" + headerPrefix);
     
     return this.http.get<Task[]>(Utils.base_url + "/search",{params:params});

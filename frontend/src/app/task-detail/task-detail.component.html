@@ -5,8 +5,13 @@
     <input [(ngModel)]="task.header" type="text" value="{{task.header}}"><br>
     <label><b>Description:</b></label><br>
     <textarea [(ngModel)]="task.text" value="{{task.text}}" rows="5"></textarea><br>
+    <label>Done:</label>
     <input #saveIsDoneCheckBox type="checkbox" [checked]="task.isDone"
-     (change)="onSaveIsDoneChange(saveIsDoneCheckBox.checked)"/>
+     (change)="onSaveIsDoneChange(saveIsDoneCheckBox.checked)"/><br>
+    <label >Due date:</label>
+    <p>{{task.dueDate}}</p>
+    <input type="date"  [(ngModel)]="task.dueDate"><br><br>
+
     <input (click)="onUpdate()" type="button" value="update">
     <input (click)="onDelete()"  type="button" value="delete">
 </div>
