@@ -2,12 +2,24 @@
 <input type="text" placeholder="Search.." (change)="onInputChange()" [(ngModel)]="headerPrefix">
 
 <label>Sort</label>
-<select [(ngModel)]="selectedSorting" (change)="onSelectionChange()">
+<select [(ngModel)]="selectedSorting" (change)="refreshTasks()">
     <option *ngFor="let sort_opt of sortingOptions">{{sort_opt}}</option>
 
 </select>
-<div routerLink="{{task.id}}/details" *ngFor="let task of tasks" class="task">
-    <span>{{task.id}}</span>
-    <h2><span>{{task.header}}</span></h2>
-    <p>{{task.text}}</p>
+<div class="task_container">
+    
+    <div class="task_list">
+        <h2>ToDo</h2>
+        <div *ngFor="let task of getNotDoneTasks()" class="task">
+            <app-task-display-item [task]="task" (taskUpdated) ="refreshTasks()"></app-task-display-item>
+        </div>
+    </div>
+    <div class="task_list">
+        <h2>Done</h2>
+        <div *ngFor="let task of getDoneTasks()" class="task">
+            <app-task-display-item  [task]="task" (taskUpdated) ="refreshTasks()"></app-task-display-item>
+        </div>
+    </div>
+
 </div>
+

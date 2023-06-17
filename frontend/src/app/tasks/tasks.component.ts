@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TaskService } from '../task.service';
 
 import { Task } from '../task';
+import { identifierName } from '@angular/compiler';
 
 @Component({
   selector: 'app-tasks',
@@ -31,7 +32,7 @@ export class TasksComponent {
   onInputChange(){
     this.attachAllTasksByHeaderPrefix(this.headerPrefix, this.selectedSorting);
   }
-  onSelectionChange(){
+  refreshTasks(){
     if (this.headerPrefix.length === 0){
      
       this.attachAllTasks(this.selectedSorting);
@@ -46,4 +47,15 @@ export class TasksComponent {
       tasks => {this.tasks = tasks;}
     );
   }
+  getNotDoneTasks(){
+    return this.tasks?.filter(
+      task => !task.isDone
+    );
+  }
+  getDoneTasks(){
+    return this.tasks?.filter(
+      task => task.isDone
+    );
+  }
+
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
-import {Location} from '@angular/common'
+import {Location, DatePipe} from '@angular/common'
+
 import { FormsModule } from '@angular/forms';
 import { Task } from '../task';
 import { TaskService } from '../task.service';
@@ -15,7 +16,8 @@ export class TaskDetailComponent {
   id: string | undefined
   constructor(private taskService:TaskService,
               private route: ActivatedRoute,
-              private location:Location){
+              private location:Location,
+              private datePipe: DatePipe){
 
   }
   ngOnInit(){
@@ -46,7 +48,7 @@ export class TaskDetailComponent {
     
   }
   getFormatedDate(date:Date){
-    return date.toISOString().substring(0,10);
+    return this.datePipe.transform(date,'MM/dd/yyyy');
   }
 }
 

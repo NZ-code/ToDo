@@ -1,4 +1,12 @@
+.task_list{
+    flex-grow: 1;
+}
 .task{
     border-style: solid;
     padding: 20px;
+    
+}
+.task_container{
+    display: flex;
+    height: 100%;
 }

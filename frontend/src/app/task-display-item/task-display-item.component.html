@@ -1,0 +1,5 @@
+<span>{{task.id}}</span>
+<a><h2 routerLink="{{task.id}}/details">{{task.header}}</h2></a>
+<input #saveIsDoneCheckBox type="checkbox" [checked]="task.isDone"
+(change)="onIsDoneChange(task, saveIsDoneCheckBox.checked)"/><br>
+<p>{{task.text}}</p>

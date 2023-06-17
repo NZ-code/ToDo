@@ -9,8 +9,9 @@
     <input #saveIsDoneCheckBox type="checkbox" [checked]="task.isDone"
      (change)="onSaveIsDoneChange(saveIsDoneCheckBox.checked)"/><br>
     <label >Due date:</label>
-    <p>{{task.dueDate}}</p>
-    <input type="date"  [(ngModel)]="task.dueDate"><br><br>
+    <p>{{getFormatedDate(task.dueDate)}}</p>
+    <label>Change due date:</label>
+    <input type="date"  [(ngModel)]="task.dueDate" ><br><br>
 
     <input (click)="onUpdate()" type="button" value="update">
     <input (click)="onDelete()"  type="button" value="delete">

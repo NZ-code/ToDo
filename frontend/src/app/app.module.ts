@@ -8,6 +8,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { TaskFormComponent } from './task-form/task-form.component';
+import { TaskDisplayItemComponent } from './task-display-item/task-display-item.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -17,6 +19,7 @@ import { TaskFormComponent } from './task-form/task-form.component';
     TasksComponent,
     TaskDetailComponent,
     TaskFormComponent,
+    TaskDisplayItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { TaskFormComponent } from './task-form/task-form.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
