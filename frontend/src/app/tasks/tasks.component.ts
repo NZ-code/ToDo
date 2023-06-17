@@ -10,6 +10,7 @@ import { Task } from '../task';
 })
 export class TasksComponent {
   tasks: Task[] | undefined;
+  headerPrefix: string = "";
   constructor(private taskService: TaskService){
     
   }
@@ -25,5 +26,12 @@ export class TasksComponent {
     this.attachAllTasks();
     
   }
-  
+  onInputChange(){
+    this.attachAllTasksByHeaderPrefix(this.headerPrefix);
+  }
+  attachAllTasksByHeaderPrefix(headerPrefix:string){
+    this.taskService.attachAllTasksByHeaderPrefix(headerPrefix).subscribe(
+      tasks => {this.tasks = tasks;}
+    );
+  }
 }

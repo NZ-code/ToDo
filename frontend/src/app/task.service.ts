@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 import {Observable} from 'rxjs'
 
 import { Task } from './task';
@@ -26,5 +26,11 @@ export class TaskService {
   public delete(id:string){
     return this.http.delete<Task>(Utils.getUrlWithTaskId(id));
   }
+  public attachAllTasksByHeaderPrefix(headerPrefix:string){
+    let params = new HttpParams().set('headerPrefix',headerPrefix);
+    console.log("Service: Header prefix:" + headerPrefix);
+    
+    return this.http.get<Task[]>(Utils.base_url + "/search",{params:params});
+  } 
 
 }
