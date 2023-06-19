@@ -1,7 +1,8 @@
 <div class="task-display-item">
     <span>{{task.id}}</span>
     <a><h2 routerLink="{{task.id}}/details">{{task.header}}</h2></a>
-    <input #saveIsDoneCheckBox type="checkbox" [checked]="task.isDone"
-    (change)="onIsDoneChange(task, saveIsDoneCheckBox.checked)"/><br>
+    <mat-checkbox color="primary" #saveIsDoneCheckBox [checked]="task.isDone" (change)="onIsDoneChange(task, saveIsDoneCheckBox.checked)">
+    </mat-checkbox>
+
     <p class="text-block">{{task.text}}</p>
 </div>
