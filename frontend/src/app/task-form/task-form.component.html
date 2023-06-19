@@ -1,10 +1,40 @@
 <h2>Add new Task</h2>
-<div  class="task-detail">
+<form  [formGroup]="taskForm" #taskFormRef="ngForm">
     <label><b>Task:</b></label><br>
-    <input [(ngModel)]="task.header" type="text" value="{{task.header}}"><br>
-    <label><b>Description:</b></label><br>
-    <textarea [(ngModel)]="task.text" value="{{task.text}}" rows="5"></textarea><br>
-    <label >Due date:</label>
-    <input type="date" [(ngModel)]="task.dueDate" value="{{task.dueDate}}"><br><br>
-    <input (click)="onSubmit()" type="button" value="Add Task"><br><br>
-</div>
+
+    <mat-form-field appearance="fill">
+        <input matInput #header placeholder="header" formControlName="header">
+    </mat-form-field>
+    <mat-hint>{{header.value.length || 0}}/25</mat-hint>
+    <div *ngIf="taskForm.controls['header'].invalid && (taskForm.controls['header'].dirty && taskForm.controls['header'].touched)" class="alert alert-danger">
+        <div *ngIf="taskForm.controls['header'].errors?.['minlength']">
+            Header must be at least 3 characters long.
+        </div>
+    </div>
+ 
+    <br>
+    <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <textarea #description matInput placeholder="text" formControlName="text"></textarea>
+    </mat-form-field>
+    <mat-hint>{{description.value.length || 0}}/255</mat-hint>
+    <br>
+    <div *ngIf="taskForm.controls['text'].invalid && (taskForm.controls['text'].dirty && taskForm.controls['text'].touched)" class="alert alert-danger">
+        <div *ngIf="taskForm.controls['text'].errors?.['minlength']">
+            Description must be at least 3 characters long.
+        </div>
+    </div>
+    
+    <input matInput [matDatepicker]="picker" formControlName="dueDate">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    
+    <br>
+    
+    <button mat-flat-button color="primary" (click)="onSubmit(taskFormRef)">Add</button>
+    <br><br>
+
+
+</form>
+
+

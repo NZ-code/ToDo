@@ -1,5 +1,7 @@
-<span>{{task.id}}</span>
-<a><h2 routerLink="{{task.id}}/details">{{task.header}}</h2></a>
-<input #saveIsDoneCheckBox type="checkbox" [checked]="task.isDone"
-(change)="onIsDoneChange(task, saveIsDoneCheckBox.checked)"/><br>
-<p>{{task.text}}</p>
+<div class="task-display-item">
+    <span>{{task.id}}</span>
+    <a><h2 routerLink="{{task.id}}/details">{{task.header}}</h2></a>
+    <input #saveIsDoneCheckBox type="checkbox" [checked]="task.isDone"
+    (change)="onIsDoneChange(task, saveIsDoneCheckBox.checked)"/><br>
+    <p class="text-block">{{task.text}}</p>
+</div>

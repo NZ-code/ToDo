@@ -1,11 +1,25 @@
 <app-task-form (messageSent)="newTask()"></app-task-form>
-<input type="text" placeholder="Search.." (change)="onInputChange()" [(ngModel)]="headerPrefix">
 
-<label>Sort</label>
-<select [(ngModel)]="selectedSorting" (change)="refreshTasks()">
-    <option *ngFor="let sort_opt of sortingOptions">{{sort_opt}}</option>
+<form [formGroup]="searchForm">
 
-</select>
+    <mat-form-field appearance="fill">
+        <input matInput placeholder="Search" formControlName="headerPrefix">
+    </mat-form-field>
+    <label>Sort</label>
+    <mat-form-field>
+        <mat-select formControlName="sorting">
+            <mat-option *ngFor="let option of sortingOptions" [value]="option">
+                {{option}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+
+
+
+</form>
+
 <div class="task_container">
     
     <div class="task_list">
