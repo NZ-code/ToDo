@@ -1,8 +1,8 @@
 <div class="task-display-item">
-    <span>{{task.id}}</span>
-    <a><h2 routerLink="{{task.id}}/details">{{task.header}}</h2></a>
+    <a><h2>{{task.header}}</h2></a>
+    <p>{{task.dueDate | date}}</p>
     <mat-checkbox color="primary" #saveIsDoneCheckBox [checked]="task.isDone" (change)="onIsDoneChange(task, saveIsDoneCheckBox.checked)">
     </mat-checkbox>
-
     <p class="text-block">{{task.text}}</p>
+    <button routerLink="{{task.id}}/details" mat-flat-button color="primary">Details</button>
 </div>

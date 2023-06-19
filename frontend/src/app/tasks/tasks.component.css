@@ -1,4 +1,4 @@
-.task_list{
+/* .task_list{
     flex-grow: 1;
 }
 .task{
@@ -9,4 +9,25 @@
 .task_container{
     display: flex;
     height: 100%;
+} */
+
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+  /* Control the left side */
+.left {
+  left: 0;
+  
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  
 }

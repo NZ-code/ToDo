@@ -13,6 +13,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import{MatChipsModule} from '@angular/material/chips';
 import{MatDatepickerModule, } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatListModule} from '@angular/material/list';
+import { MatToolbarModule} from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -46,7 +48,9 @@ import { DatePipe } from '@angular/common';
     MatCheckboxModule,
     MatChipsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatListModule,
+    MatToolbarModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

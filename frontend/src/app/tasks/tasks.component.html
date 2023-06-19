@@ -14,26 +14,31 @@
         </mat-select>
     </mat-form-field>
 
-
-
-
-
 </form>
 
 <div class="task_container">
     
-    <div class="task_list">
-        <h2>ToDo</h2>
+    <div style="width: 50%; float:left">
+        <mat-toolbar color="primary">
+            <h2>ToDo</h2>
+        </mat-toolbar>
+        
         <div *ngFor="let task of getNotDoneTasks()" class="task">
             <app-task-display-item [task]="task" (taskUpdated) ="refreshTasks()"></app-task-display-item>
+            <mat-divider></mat-divider>
         </div>
     </div>
-    <div class="task_list">
-        <h2>Done</h2>
+    <div style="width: 50%; float:right">
+        <mat-toolbar color="primary">
+            <h2>Done</h2>
+        </mat-toolbar>
+
         <div *ngFor="let task of getDoneTasks()" class="task">
             <app-task-display-item  [task]="task" (taskUpdated) ="refreshTasks()"></app-task-display-item>
+            <mat-divider></mat-divider>
         </div>
     </div>
+
 
 </div>
 
