@@ -2,14 +2,16 @@
 Spring Web To Do App
 
 # RUN
-## BACKEND
+## BACKEND (Java,Spring)
   ```
   mvnw dependency:go-offline
   mvnw spring-boot:run
   ```
-## FRONTEND
+## FRONTEND (TypeScript, Angular)
+  ```
   npm install
   ng serve --open
+  ```
 # API
 ### Endpoint for executed requests statistics
 http://localhost:8080/actuator/metrics/http.server.requests
