@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    List<Task> findByHeaderStartingWithIgnoreCaseOrderByHeaderAsc(String headerPrefix, Sort sorting);
+    List<Task> findByHeaderStartingWithIgnoreCase(String headerPrefix, Sort sorting);
 
 
 }

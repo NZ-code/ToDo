@@ -56,8 +56,7 @@ public class TaskService {
     }
 
     public List<Task> searchTasksByHeaderPrefix(String headerPrefix, String sorting) {
-        //todo not working
-        return taskRepository.findByHeaderStartingWithIgnoreCaseOrderByHeaderAsc(headerPrefix, getSortingByParam(sorting));
+        return taskRepository.findByHeaderStartingWithIgnoreCase(headerPrefix, getSortingByParam(sorting));
     }
 
 }

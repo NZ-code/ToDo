@@ -29,10 +29,10 @@ export class TaskService {
     return this.http.delete<Task>(Utils.getUrlWithTaskId(id));
   }
   public attachAllTasksByHeaderPrefix(headerPrefix:string, sorting:string){
-    let params = new HttpParams().set('headerPrefix',headerPrefix);
-    params.append('sorting',sorting)
-    console.log("Service: Header prefix:" + headerPrefix);
+    let params = new HttpParams().set('headerPrefix',headerPrefix).set('sorting',sorting);
     
+    console.log("Service: Header prefix:" + headerPrefix);
+    console.log(Utils.base_url + "/search",{params:params})
     return this.http.get<Task[]>(Utils.base_url + "/search",{params:params});
   } 
 
