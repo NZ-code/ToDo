@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Output,EventEmitter } from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
 import {Location, DatePipe} from '@angular/common'
 
@@ -32,15 +32,24 @@ export class TaskDetailComponent {
   }
   onUpdate(){
     this.taskService.update(this.id!, this.task!).subscribe(
-      _ => console.log(this.task?.isDone)
+      _ => this.taskChangedEvent.emit()
       
     );
     
     
   }
+  @Output()
+  taskChangedEvent = new EventEmitter();
+
   onDelete(){
-    this.taskService.delete(this.id!).subscribe();
-    this.goBack();
+    this.taskService.delete(this.id!).subscribe(
+      _ => 
+      {
+        this.taskChangedEvent.emit()
+        this.location.back();
+      }
+    );
+    
   }
   onSaveIsDoneChange(value:boolean){
     this.task!.isDone = value;

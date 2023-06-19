@@ -40,13 +40,13 @@ export class TaskFormComponent {
       this.task.text = this.taskForm.get('text')?.value;
       this.task.dueDate = this.taskForm.get('dueDate')?.value;
       
+      console.log(this.taskForm.controls['text'].invalid);
       
-      this.taskForm.reset();  // Reset the form to empty values
-      formRef.resetForm();    // Reset the form state and clear errors
-
-      this.elementRef.nativeElement.querySelectorAll('.ng-invalid').forEach((element: any) => {
-        element.classList.remove('ng-invalid');
-      });
+      this.taskForm.reset();  
+      formRef.reset();    
+    
+      this.taskForm.controls['text'].setErrors(null);
+      this.taskForm.controls['header'].setErrors(null);
 
       this.taskService.save(this.task).subscribe(
         _ =>this.messageSent.emit());

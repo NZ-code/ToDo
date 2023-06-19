@@ -1,6 +1,11 @@
 .text-block {
+    margin-left: 40px;
     word-wrap: break-word;
 }
 .task-display-item{
-    width: 100px;
+    width: 200px;
+}
+.checkbox-container{
+    float: left;
+    margin-left: 10px;
 }

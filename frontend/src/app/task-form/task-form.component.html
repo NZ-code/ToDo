@@ -6,7 +6,7 @@
         <input matInput #header placeholder="header" formControlName="header">
     </mat-form-field>
     <mat-hint>{{header.value.length || 0}}/25</mat-hint>
-    <div *ngIf="taskForm.controls['header'].invalid && (taskForm.controls['header'].dirty && taskForm.controls['header'].touched)" class="alert alert-danger">
+    <div *ngIf="taskForm.controls['header'].invalid && taskForm.controls['header'].dirty && taskForm.controls['header'].touched" class="alert alert-danger">
         <div *ngIf="taskForm.controls['header'].errors?.['minlength']">
             Header must be at least 3 characters long.
         </div>
@@ -19,7 +19,7 @@
     </mat-form-field>
     <mat-hint>{{description.value.length || 0}}/255</mat-hint>
     <br>
-    <div *ngIf="taskForm.controls['text'].invalid && (taskForm.controls['text'].dirty && taskForm.controls['text'].touched)" class="alert alert-danger">
+    <div *ngIf="taskForm.controls['text'].invalid && taskForm.controls['text'].dirty && taskForm.controls['text'].touched" class="alert alert-danger">
         <div *ngIf="taskForm.controls['text'].errors?.['minlength']">
             Description must be at least 3 characters long.
         </div>

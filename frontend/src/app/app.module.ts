@@ -15,6 +15,8 @@ import{MatDatepickerModule, } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule} from '@angular/material/list';
 import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
@@ -51,6 +53,7 @@ import { DatePipe } from '@angular/common';
     MatNativeDateModule,
     MatListModule,
     MatToolbarModule,
+    MatIconModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

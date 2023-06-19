@@ -8,12 +8,13 @@
     <label>Done:</label>
     <input #saveIsDoneCheckBox type="checkbox" [checked]="task.isDone"
      (change)="onSaveIsDoneChange(saveIsDoneCheckBox.checked)"/><br>
-    <label >Due date:</label>
-    <p>{{getFormatedDate(task.dueDate)}}</p>
     <label>Change due date:</label>
-    <input type="date"  [(ngModel)]="task.dueDate" ><br><br>
-
-    <input (click)="onUpdate()" type="button" value="update">
-    <input (click)="onDelete()"  type="button" value="delete">
+    <input matInput [matDatepicker]="picker" [(ngModel)]="task.dueDate">
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <br>
+    <button mat-raised-button color="accent"  (click)="onUpdate()">update</button>
+    <button mat-raised-button color="warn"  (click)="onDelete()">delete</button>
+    
 </div>
 
