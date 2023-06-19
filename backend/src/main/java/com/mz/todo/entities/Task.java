@@ -1,16 +1,14 @@
 package com.mz.todo.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.Date;
 
 @Entity
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class Task {
     public Task(String header, String text, Boolean isDone, Date dueDate){
         this.header = header;
@@ -20,6 +18,7 @@ public class Task {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
     public long id;
     @Getter
     @Setter

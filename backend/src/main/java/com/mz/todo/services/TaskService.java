@@ -15,8 +15,7 @@ import java.util.Optional;
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
-    @Autowired
-    private CounterService counterService;
+
 
     public void createTask(Task task){
         taskRepository.save(task);
